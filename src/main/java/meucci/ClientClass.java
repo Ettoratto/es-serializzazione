@@ -3,7 +3,7 @@ package meucci;
 import java.io.*;
 import java.net.*;
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ClientClass {
 
@@ -14,7 +14,7 @@ public class ClientClass {
     BufferedReader in;
     PrintWriter out;
 
-    XmlMapper mapper = new XmlMapper();
+    ObjectMapper mapper = new ObjectMapper();
 
     public ClientClass(String serverAddress, int serverPort) {
         this.serverAddress = serverAddress;
@@ -44,11 +44,11 @@ public class ClientClass {
 
     public void communicate(){
 
-        String xml;
+        String json;
 
         try {
-            while(!(xml = in.readLine()).isEmpty()){
-                Persona p = mapper.readValue(xml, Persona.class);
+            while(!(json = in.readLine()).isEmpty()){
+                Persona p = mapper.readValue(json, Persona.class);
                 System.out.println("Nome: " + p.nome + ";\nCognome: " + p.cognome + ";\nSesso: " + p.sesso + ";\nEta': " + p.eta + ";");
                 closeConnection();
             }

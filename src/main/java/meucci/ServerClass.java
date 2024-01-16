@@ -2,7 +2,8 @@ package meucci;
 
 import java.io.*;
 import java.net.*;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ServerClass {
 
@@ -12,7 +13,7 @@ public class ServerClass {
     BufferedReader in;
     PrintWriter out;
 
-    XmlMapper mapper = new XmlMapper();
+    ObjectMapper mapper = new ObjectMapper();
 
     public ServerClass(int port) {
 
@@ -46,9 +47,9 @@ public class ServerClass {
         try {
 
             Persona p = new Persona("Davide", "Guerrieri", "M", 18);
-            String xml = mapper.writeValueAsString(p);
-            System.out.println(xml);
-            out.println(xml);
+            String json = mapper.writeValueAsString(p);
+            System.out.println(json);
+            out.println(json);
             closeConnection();
 
         } catch (Exception e) {
